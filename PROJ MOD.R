@@ -1,7 +1,7 @@
 
 
 
-
+###############################################
 y.t = DATA[,6:12] ; y.t.all = y.t
 N.t = ncol(y.t) ##number of months
 n = nrow(y.t) ##number of observation per months
@@ -9,7 +9,7 @@ n = nrow(y.t) ##number of observation per months
 
 
 ##add some missing observations to illistrate prediction
-miss = 7
+miss = 1
 #holdout.station.id <- seq(1,100,7)
 holdout.station.id <- seq(1,100,14)
 y.t.holdout <- y.t[holdout.station.id, miss]
