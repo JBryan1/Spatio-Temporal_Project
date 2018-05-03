@@ -13,8 +13,8 @@
 library(shiny)
 library (shinythemes)
 
-load("C:/Users/jmb179/Desktop/Gerrymander/Gerrymander/Demographics.RData")
-load("C:/Users/jmb179/Desktop/Gerrymander/Gerrymander/nc_new.RData")
+load("Demographics.RData")
+load("nc_new.RData")
 
 
 # Define UI for application that draws a map of NC with differences in 
