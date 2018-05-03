@@ -32,6 +32,7 @@ starting <- list("beta"=rep(c(.5,0,0),N.t), "phi"=rep(3/(0.5*max.d), N.t),
 
 
 tuning <- list("phi"=rep(5, N.t))
+#tuning <- list("phi"=rep(.1, N.t))
 
 priors <- list("beta.0.Norm"=list(rep(0,p), diag(1000,p)),
                "phi.Unif"=list(rep(3/(0.9*max.d), N.t), rep(3/(0.05*max.d), N.t)),

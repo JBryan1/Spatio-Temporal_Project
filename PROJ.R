@@ -141,4 +141,8 @@ votes.dem = sum(results.county[which(results.county[,8]=="DEM"),14])
 Y[K] = (votes.repub - votes.dem) / votes.total}
 DATA$Y_9 = Y
 
+rm(results)
+rm(results.county)
+save.image("~/Spatio-Temporal_Project/SUMMARY_DATA.RData")
+
 
