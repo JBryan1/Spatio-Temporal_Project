@@ -1,0 +1,45 @@
+---
+title: "Untitled"
+author: "William Eastman"
+date: "5/3/2018"
+output: html_document
+---
+
+## Context & Domain
+
+As any avid consumer of political commentary can attest, formal statistical inquiry of U.S. political and electoral data has found growing prominence within the national intellectual zeitgeist in recent years as the repute of normative, qualitative methods has waned. Though most associated with the objective of prediction in the popular imagination, such inquiry stands to yield appreciable public utility in its retrospective application as well. This module presents a concise example of the use of a powerful, modern, and highly flexible modelistic framework, that of the dynamic spatio-temporal linear model (DS-TLM), with such an interest in mind. Voting data often exhibit meaningful dependency structures with respect to both time and space, though the majority of existing methods seek to capture such dependencies only  from the vantage of a single dimension which can limit their efficacy. In contrast, the DS-TLM framework provides for inference informed by the systematic aggregation of information across both spatial and temporal dimensions, allowing it to better represent a wider array of natural and social phenomena. Specifically, this module allows for the specification and computation of a DS-TLM model for the purpose of estimating the difference between the percentages of total votes cast for Republican and Democratic candidates for U.S. House of Representatives races in all counties of North Carolina for general elections beginning in 2004.
+
+## DS-TLM Model Specification
+
+The point spread, that is the difference in the percentages of total ballots cast for Republican candidates versus Democratic candidates at time $t$ and county $s$ is given by $y_t(s)$ where,
+
+$$
+\begin{aligned}
+y_t(\mathbf{s}) & = \mathbf{x}_t(\mathbf{s})\mathbf{\beta}_t + u_t(\mathbf{s}) + \epsilon_t(\mathbf{s}) \\
+\epsilon_t(\mathbf{s}) &\stackrel{ind.}\sim \mathcal{N}(0,\tau_{t}^2) \\
+\\
+\mathbf{\beta}_{0} & \sim \mathcal{N}(\mathbf{\mu}_0, \mathbf{\Sigma}_0) \\
+\mathbf{\beta}_t & = \mathbf{\beta}_{t-1} + \mathbf{\eta}_t \\
+\mathbf{\eta}_t &\stackrel{i.i.d.}\sim \mathcal{N}(0,\mathbf{\Sigma}_{\eta}) \\
+\\
+u_{0}(\mathbf{s}) &  = 0 \\
+u_t(\mathbf{s}) &= u_{t-1}(\mathbf{s}) + w_t(\mathbf{s}) \\
+w_t(\mathbf{s}) &\stackrel{}{\sim} \mathcal{GP}\left(\mathbf{0}, C_t(·, \theta_t)\right  )
+\end{aligned}
+$$
+
+
+The $\mathcal{GP}\left(\mathbf{0}, C_t(·, \theta_t)\right  )$ term denotes a spatial Gaussian process with covariance function $C_t(·; \theta_t)$. Let $C_t(s_1,s_2; \theta_t) = \sigma^2_t\rho(s_1,s_2; \phi_t)$, where $\theta_t = \{\sigma^2_t,\phi_t,\nu_t \}$ and define $\rho(·;\phi)$ as a correlation function with decay and spatial variance represented by $\phi$ and $\sigma^2_t$, respectively.
+
+## Module Features & Applications
+
+This module allows for user-defined prior specification for all appropriate terms given by the above specification while employing exponential covariance functions. Fitted partisan point spreads, alongside their actual values and corresponding residuals are displayed graphically for each county for a desired general election year. User-defined holdout data for the purpose of out of sample validation can also be specified, with the borders of holdout counties bolded for visual indication. Though the dimensionality of the data is indeed quite limited along the temporal axis, appreciable accuracy is evident when utilizing a consistently diffuse series of prior specifications. We thus propose the consideration of out-of-sample residuals which are substantially larger in magnitude than those of surrounding counties to be suggestive of possible voting irregularity or transcription error in light of the strong degree of spatial dependency evident throughout the data. For governmental or public-minded institutions tasked with monitoring such irregularities or errors and facing resource constraints, this rough diagnostic may suggest those locations where further investigation is likely most warranted.
+
+
+
+
+
+
+
+
+
