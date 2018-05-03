@@ -1,6 +1,7 @@
 
 
 
+<<<<<<< HEAD
 
 
 ###################################################################################################################
@@ -144,5 +145,4 @@ DATA$Y_9 = Y
 rm(results)
 rm(results.county)
 save.image("~/Spatio-Temporal_Project/SUMMARY_DATA.RData")
-
 
