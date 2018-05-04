@@ -20,7 +20,7 @@ ui <- fluidPage(theme = shinytheme("flatly"),
       tabPanel("Prediction",
   
        # Application title
-       titlePanel("Inferring Demographic Effects on NC Voter Turnout"),
+       titlePanel("Predicting NC Voter Turnout"),
        
        sidebarLayout(
          # Sidebar panel for demographic inputs ----
