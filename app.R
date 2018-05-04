@@ -12,6 +12,7 @@
 
 library(shiny)
 library (shinythemes)
+library(knitr)
 
 ui <- fluidPage(theme = shinytheme("flatly"),
     
@@ -183,12 +184,15 @@ ui <- fluidPage(theme = shinytheme("flatly"),
          )
        ),
       
-    tabPanel("Inference")
+    tabPanel("Write-Up",
+             includeHTML('writeup.html'),
+             imageOutput("preImage")
+             )
   )
 )
 # Define server logic required to draw a histogram
 server <- function(input, output) {
-
+  library(markdown)
   library(sf)
   library(spBayes)
   
@@ -430,7 +434,14 @@ server <- function(input, output) {
     #                                            " ",
     #                                            (2002+ as.numeric(input$year)*2)))
   })
+
+  # Send a pre-rendered image, and don't delete the image after sending it
+  output$preImage <- renderImage({
+    
+    # Return a list containing the filename and alt text
+    list(src = "math_images.png")
+    
+  }, deleteFile = FALSE)
 }
 # Run the application 
 shinyApp(ui = ui, server = server)
-
